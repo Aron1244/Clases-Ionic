@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title > SkeletonApp </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <h1>Bienvenido!</h1>
+
+  <p>Usuario: {{nombre}}</p>
+
+  <h3>Información adicional</h3>
+
+  <ion-item>
+    <ion-input label="Usuario" placeholder=""></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Apellido" placeholder=""></ion-input>
+  </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <p>Nivel educacional</p>
+      <ion-select aria-label="nivel" placeholder="Seleccione nivel">
+        <ion-select-option value="apples">Basico</ion-select-option>
+        <ion-select-option value="apples">Medio</ion-select-option>
+        <ion-select-option value="oranges">Superior</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <p>Fecha nacimiento</p>
+  <br>
+
+  <ion-button>Limpiar</ion-button>
+  <ion-button>Mostrar</ion-button>
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title> App desarrollada por </ion-title>
+  </ion-toolbar>
+</ion-footer>
