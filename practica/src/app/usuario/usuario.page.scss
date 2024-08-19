@@ -1,0 +1,96 @@
+ion-modal#example-modal {
+  --width: fit-content;
+  --min-width: 250px;
+  --height: fit-content;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+ion-modal#example-modal h1 {
+  margin: 20px 20px 10px 20px;
+}
+
+ion-modal#example-modal ion-icon {
+  margin-right: 6px;
+
+  width: 48px;
+  height: 48px;
+
+  padding: 4px 0;
+
+  color: #aaaaaa;
+}
+
+ion-modal#example-modal .wrapper {
+  margin-bottom: 10px;
+}
+
+
+ion-toolbar{
+  --background: lightgrey;
+  color: black;
+}
+
+ion-title{
+  font-size: small;
+}
+
+ion-content{
+  --background: white;
+  --color: black;
+  text-align: center;
+}
+
+ion-item{
+  --background: white;
+  --color: black;
+}
+
+ion-button{
+  --background: white;
+  --border-color: #000;
+  --border-style: solid;
+  --border-width: 1px;
+  --border-radius:6px;
+  margin: auto;
+}
+
+.center-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+h1{
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.usuario{
+  text-align: start;
+}
+
+h3{
+  font-size: x-large;
+}
+
+ion-input{
+  text-align: end;
+}
+
+ion-modal{
+  --background: white;
+  color: black;
+  text-align: center;
+}
+
+ion-buttons{
+  background-color: white;
+}
+
+ion-list{
+  background-color: white;
+}
+
+.calendario{
+  margin-left: 2vw;
+}

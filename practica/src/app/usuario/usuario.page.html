@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title > SkeletonApp </ion-title>
+    <ion-title>SkeletonApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,38 +8,69 @@
 
   <h1>Bienvenido!</h1>
 
-  <p>Usuario: {{nombre}}</p>
+  <ion-item lines="none">
+    <p class="usuario">Usuario: {{usuario}}</p>
+  </ion-item>
 
   <h3>Información adicional</h3>
 
-  <ion-item>
-    <ion-input label="Usuario" placeholder=""></ion-input>
+  <ion-item lines="none">
+    <ion-input label="Nombre" [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-input label="Apellido" placeholder=""></ion-input>
+  <ion-item lines="none">
+    <ion-input label="Apellido" [(ngModel)]="apellido" placeholder="Ingrese apellido"></ion-input>
   </ion-item>
 
-  <ion-list>
-    <ion-item>
-      <p>Nivel educacional</p>
-      <ion-select aria-label="nivel" placeholder="Seleccione nivel">
-        <ion-select-option value="apples">Basico</ion-select-option>
-        <ion-select-option value="apples">Medio</ion-select-option>
-        <ion-select-option value="oranges">Superior</ion-select-option>
+  <ion-list lines="none">
+    <ion-item >
+      <ion-select label="Nivel educacional" placeholder="Seleccione nivel" [(ngModel)]="nivelEducacional">
+        <ion-select-option value="basico">Básico</ion-select-option>
+        <ion-select-option value="medio">Medio</ion-select-option>
+        <ion-select-option value="superior">Superior</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
+
   <br>
-  <p>Fecha nacimiento</p>
+  <ion-item lines="none">
+    <ion-input label="Fecha nacimiento" [(ngModel)]="formattedDate" placeholder="Ingrese fecha"></ion-input>
+    <ion-button class="calendario" (click)="toggleDatePicker()">📅</ion-button>
+  </ion-item>
+
+  <ion-datetime presentation="date" *ngIf="isDatePickerOpen" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY"
+    (ionChange)="onDateSelected($event)" (ionBlur)="closeDatePicker()">
+  </ion-datetime>
+
   <br>
 
-  <ion-button>Limpiar</ion-button>
-  <ion-button>Mostrar</ion-button>
+  <div class="center-buttons">
+    <ion-button (click)="limpiarCampos()">Limpiar</ion-button>
+    <ion-button id="open-custom-dialog" (click)="setOpen(true)">Mostrar</ion-button>
+  </div>
 
+  <ion-modal id="example-modal" #modal trigger="open-custom-dialog" [isOpen]="isModalOpen">
+    <ng-template>
+      <div class="wrapper">
+        <h2 class="text-align-center">Usuario</h2>
+        <ion-list lines="none">
+          <ion-item button="true" detail="false" (click)="modal.dismiss()">
+            <span>Su nombre es {{nombre}} {{apellido}}</span>
+          </ion-item>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-list>
+      </div>
+    </ng-template>
+  </ion-modal>
+  <br><br>
+
+  <ion-button expand="block" [routerLink]="['/login']" >Ir a login</ion-button>
 
 </ion-content>
+
 <ion-footer>
   <ion-toolbar>
-    <ion-title> App desarrollada por </ion-title>
+    <ion-title>App desarrollada por {{usuario}}</ion-title>
   </ion-toolbar>
 </ion-footer>
