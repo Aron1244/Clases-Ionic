@@ -42,23 +42,22 @@ export class UsuarioPage {
   onDateSelected(event: any) {
     this.selectedDate = event.detail.value;
     this.formattedDate = this.formatDate(this.selectedDate);
-    this.closeDatePicker(); // Cierra el calendario después de seleccionar una fecha
+    this.closeDatePicker();
   }
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
     const day = ('0' + date.getDate()).slice(-2);
-    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Los meses comienzan en 0
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   }
 
-  // Método actualizado para limpiar los campos, incluyendo el ion-select
   limpiarCampos() {
     this.nombre = '';
     this.apellido = '';
     this.formattedDate = '';
-    this.nivelEducacional = ''; // Restablece el valor del ion-select
+    this.nivelEducacional = '';
   }
 
   async toastErrorMessage(message: string) {
@@ -73,13 +72,11 @@ export class UsuarioPage {
 
   async toggleModal() {
     if (this.isModalOpen) {
-      this.isModalOpen = false; // Cierra el modal
+      this.isModalOpen = false;
     } else {
-      // Solo abrir el modal si ambos campos tienen un valor
       if (this.nombre.trim() !== '' && this.apellido.trim() !== '') {
         this.isModalOpen = true;
       } else {
-        // Mostrar mensaje si alguno de los campos está vacío usando toast
         await this.toastErrorMessage(
           'Por favor, complete ambos campos (Nombre y Apellido).'
         );
