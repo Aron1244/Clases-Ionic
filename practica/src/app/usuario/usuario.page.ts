@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -6,16 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./usuario.page.scss'],
 })
 export class UsuarioPage {
-  usuario          : string = 'AronSn0w';
-  nombre           : string = '';
-  apellido         : string = '';
-  selectedDate     : string = '';
-  formattedDate    : string = '';
-  isDatePickerOpen : boolean = false;
-  isModalOpen      : boolean = false;
-  nivelEducacional : string = '';  // Nueva propiedad para el ion-select
+  user!: string;
+  nombre: string = '';
+  apellido: string = '';
+  selectedDate: string = '';
+  formattedDate: string = '';
+  isDatePickerOpen: boolean = false;
+  isModalOpen: boolean = false;
+  nivelEducacional: string = '';
 
-  constructor() {}
+  constructor(private activeroute: ActivatedRoute, private router: Router) {
+    this.activeroute.queryParams.subscribe((params) => {
+      let state = this.router.getCurrentNavigation()?.extras.state;
+      if (state && state['user']) {
+        this.user = state['user']; // Almacena el valor en la propiedad
+      }
+    });
+  }
 
   toggleDatePicker() {
     this.isDatePickerOpen = !this.isDatePickerOpen;
@@ -39,15 +47,25 @@ export class UsuarioPage {
     return `${day}/${month}/${year}`;
   }
 
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
-  }
-
   // Método actualizado para limpiar los campos, incluyendo el ion-select
   limpiarCampos() {
     this.nombre = '';
     this.apellido = '';
     this.formattedDate = '';
-    this.nivelEducacional = '';  // Restablece el valor del ion-select
+    this.nivelEducacional = ''; // Restablece el valor del ion-select
+  }
+
+  toggleModal() {
+    if (this.isModalOpen) {
+      this.isModalOpen = false; // Cierra el modal
+    } else {
+      // Solo abrir el modal si ambos campos tienen un valor
+      if (this.nombre.trim() !== '' && this.apellido.trim() !== '') {
+        this.isModalOpen = true;
+      } else {
+        // Mostrar mensaje si alguno de los campos está vacío
+        alert('Por favor, complete ambos campos (Nombre y Apellido).');
+      }
+    }
   }
 }

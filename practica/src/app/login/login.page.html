@@ -10,17 +10,18 @@
 
   <div class="container">
     <ion-item>
-      <ion-input label="Usuario" labelPlacement="stacked" placeholder=""></ion-input>
+      <ion-input [(ngModel)]="username" label="Usuario" labelPlacement="stacked" placeholder="" maxlength="8" minlength="3"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input label="Password" labelPlacement="stacked" placeholder=""></ion-input>
+      <ion-input [(ngModel)]="password" label="Password" type="password" labelPlacement="stacked" placeholder="" maxlength="4" inputmode="numeric" ></ion-input>
     </ion-item>
     <br>
-    <ion-button expand="block">Ingresar</ion-button>
+    <ion-button (click)="validateLogin()" expand="block">Ingresar</ion-button>
     <br>
     <a href="">Crear cuenta gratis</a>
+    <br>
 
-    <ion-button (click)="navigateToHome()">Ir al inicio</ion-button>
-    <ion-button [routerLink]="['/usuario']" >Ir a usuario</ion-button>
+    <!-- <ion-button (click)="navigateToHome()">Ir al inicio</ion-button> -->
+    <!-- <ion-button [routerLink]="['/usuario']">Ir a usuario</ion-button> -->
   </div>
 </ion-content>

@@ -94,3 +94,24 @@ ion-list{
 .calendario{
   margin-left: 2vw;
 }
+
+.btnRegreso {
+  position: absolute;
+  left: 2%;
+}
+
+@media (min-width: 768px) {
+  .btnRegreso {
+    left: 5%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .btnRegreso {
+    left: 10%;
+  }
+}
+ion-datetime{
+  color: rgb(26, 25, 25);
+  background-color: white;
+}

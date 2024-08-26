@@ -9,20 +9,20 @@
   <h1>Bienvenido!</h1>
 
   <ion-item lines="none">
-    <p class="usuario">Usuario: {{usuario}}</p>
+    <p class="usuario">Usuario: {{user}}</p>
   </ion-item>
 
   <h3>Información adicional</h3>
 
   <ion-item lines="none">
-    <ion-input label="Nombre" [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
+    <ion-input label="Nombre" [(ngModel)]="nombre" placeholder="Ingrese nombre" maxlength="50"></ion-input>
   </ion-item>
   <ion-item lines="none">
-    <ion-input label="Apellido" [(ngModel)]="apellido" placeholder="Ingrese apellido"></ion-input>
+    <ion-input label="Apellido" [(ngModel)]="apellido" placeholder="Ingrese apellido" maxlength="50"></ion-input>
   </ion-item>
 
   <ion-list lines="none">
-    <ion-item >
+    <ion-item>
       <ion-select label="Nivel educacional" placeholder="Seleccione nivel" [(ngModel)]="nivelEducacional">
         <ion-select-option value="basico">Básico</ion-select-option>
         <ion-select-option value="medio">Medio</ion-select-option>
@@ -45,32 +45,36 @@
 
   <div class="center-buttons">
     <ion-button (click)="limpiarCampos()">Limpiar</ion-button>
-    <ion-button id="open-custom-dialog" (click)="setOpen(true)">Mostrar</ion-button>
+    <ion-button id="open-custom-dialog" (click)="toggleModal()">Mostrar</ion-button>
   </div>
 
-  <ion-modal id="example-modal" #modal trigger="open-custom-dialog" [isOpen]="isModalOpen">
+  <ion-modal id="example-modal" #modal [isOpen]="isModalOpen">
     <ng-template>
       <div class="wrapper">
         <h2 class="text-align-center">Usuario</h2>
         <ion-list lines="none">
-          <ion-item button="true" detail="false" (click)="modal.dismiss()">
+          <ion-item button="true" detail="false" (click)="toggleModal()">
             <span>Su nombre es {{nombre}} {{apellido}}</span>
           </ion-item>
           <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+            <ion-button (click)="toggleModal()">Cerrar</ion-button>
           </ion-buttons>
         </ion-list>
       </div>
     </ng-template>
   </ion-modal>
+
   <br><br>
 
-  <ion-button expand="block" [routerLink]="['/login']" >Ir a login</ion-button>
+  <!-- <ion-button expand="block" [routerLink]="['/login']" >Ir a login</ion-button>
+   -->
+  <ion-back-button class="btnRegreso" icon="arrow-back-outline" defaultHref="/"></ion-back-button>
+
 
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-title>App desarrollada por {{usuario}}</ion-title>
+    <ion-title>App desarrollada por {{user}}</ion-title>
   </ion-toolbar>
 </ion-footer>
