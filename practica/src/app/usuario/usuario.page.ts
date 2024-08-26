@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-usuario',
@@ -15,8 +16,13 @@ export class UsuarioPage {
   isDatePickerOpen: boolean = false;
   isModalOpen: boolean = false;
   nivelEducacional: string = '';
+  developer: String = 'AronSn0w';
 
-  constructor(private activeroute: ActivatedRoute, private router: Router) {
+  constructor(
+    private activeroute: ActivatedRoute,
+    private router: Router,
+    private toaster: ToastController // Inyecta ToastController
+  ) {
     this.activeroute.queryParams.subscribe((params) => {
       let state = this.router.getCurrentNavigation()?.extras.state;
       if (state && state['user']) {
@@ -55,7 +61,17 @@ export class UsuarioPage {
     this.nivelEducacional = ''; // Restablece el valor del ion-select
   }
 
-  toggleModal() {
+  async toastErrorMessage(message: string) {
+    const toast = await this.toaster.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      color: 'danger',
+    });
+    toast.present();
+  }
+
+  async toggleModal() {
     if (this.isModalOpen) {
       this.isModalOpen = false; // Cierra el modal
     } else {
@@ -63,8 +79,10 @@ export class UsuarioPage {
       if (this.nombre.trim() !== '' && this.apellido.trim() !== '') {
         this.isModalOpen = true;
       } else {
-        // Mostrar mensaje si alguno de los campos está vacío
-        alert('Por favor, complete ambos campos (Nombre y Apellido).');
+        // Mostrar mensaje si alguno de los campos está vacío usando toast
+        await this.toastErrorMessage(
+          'Por favor, complete ambos campos (Nombre y Apellido).'
+        );
       }
     }
   }
